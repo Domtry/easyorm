@@ -1,6 +1,8 @@
 # easyorm
 easyorm is a basic simple orm
 
+demo using easyorm https://github.com/Domtry/easyorm_demo.git
+
 list of database :
 - [x] sqlite
 - [x] mysql
