@@ -1,4 +1,4 @@
-# easyorm
+# easyorm v1.0.2
 easyorm is a basic simple orm
 
 list of database :
