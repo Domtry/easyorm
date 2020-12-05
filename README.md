@@ -21,7 +21,6 @@ Create new model
 - > description de la propriété : (facultatif)
 
 method list of model
-- > get()
 - > add()
 - > findOne(parms :id)
 - > find()
