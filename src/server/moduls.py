@@ -50,33 +50,35 @@ class Modul:
 
         #Operation d'inclusion du module dans le programme 
         with open(f'src/modules/lunch.py', 'a+') as src:
-            class_property = ''
-            for item in json_data['properties']:
-                class_property+=f'\t\tself.{item} = None\n'
-
-            discrip = '"""\n\t-> get()\n\t-> add()\n\t-> findOne()\n\t-> find()\n\t-> remove()\n\t-> execute()\n\t"""'
+            discrip = '"""\n\t-> add()\n\t-> findOne()\n\t-> find()\n\t-> remove()\n\t-> execute()\n\t"""'
             script_of_moduel = f"\n\nclass {file_name.capitalize()}(metaclass=MetaModel):\n"
             script_of_moduel+=f"\t{discrip}\n"
             script_of_moduel+="\tdef __init__(self):\n"
-            script_of_moduel+=f"{class_property}"
+            script_of_moduel+=f"\t\tpass\n"
             src.write(script_of_moduel)
         
 
         with open(f'{MODELS_SOURCE_PATH}/{file_name}.py', 'a') as src:
             
+            init_class = "\tdef __init__(self):\n"
+            for item in json_data['properties']:
+                init_class+=f"\t\tself.{item} = None\n"
+            init_class+=f"\n"
+
             doc_model = '\t"""\n'
             for item in json_data['properties']:
                 doc_model+=f"\t\# {item} <{json_data['properties'][item]['type']}>\n"
             doc_model += '\t"""\n'
 
-            model_meth = "\tdef save(self):\n"
-            model_meth+= "\t\tpass\n"
+            model_meth = f'{init_class}'
+            model_meth+= "\tdef save(self):\n"
+            model_meth+= "\t\tpass\n\n"
             model_meth+= "\tdef put(self):\n"
-            model_meth+= "\t\tpass\n"
+            model_meth+= "\t\tpass\n\n"
             model_meth+= "\tdef get(self):\n"
-            model_meth+= "\t\tpass\n"
+            model_meth+= "\t\tpass\n\n"
             model_meth+= "\tdef delete(self):\n"
-            model_meth+= "\t\tpass\n"
+            model_meth+= "\t\tpass\n\n"
 
             script_of_moduel = f"from src.modules import {file_name.capitalize()}"
             script_of_moduel+= f"\n\nclass {file_name.capitalize()}Model({file_name.capitalize()}):\n"

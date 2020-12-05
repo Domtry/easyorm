@@ -1,0 +1,1 @@
+{"name": "etudiant", "option": {"encoding": "utf8", "dataSource": "db_sqlite_source", "dbname": "demo"}, "properties": {"name": {"type": "string", "length": "35", "default": "", "index": "false", "required": "true", "commet": ""}}}

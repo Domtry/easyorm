@@ -7,7 +7,7 @@ class MetaModel(type):
     def __new__(metacls, classname, herited, contants):
         clsname = classname.lower()
         propertys = {}
-        
+
         if 'model' in clsname :
             return type.__new__(metacls, clsname, herited, contants)
         else :

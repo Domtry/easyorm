@@ -1,7 +1,8 @@
 #File to permit has use model test
 
-from clients.note import NoteModel
+from clients.etudiant import EtudiantModel
 
-nte = NoteModel()
-nte.valeur = 10
-print(nte.get())
+etd = EtudiantModel()
+etd.name = 'koffi bruce'
+etd.save()
+print(etd.get())
