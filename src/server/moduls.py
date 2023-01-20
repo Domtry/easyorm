@@ -34,11 +34,11 @@ class Modul:
             else :
                 values = cls.simple_quiz(quiz)
                 json_data[item] = values
-        
+
         json_data['properties'] = item_data
         file_name = f"{json_data['name']}".lower()
         # json_formated = json.load(json_data)
-        
+
 
         #Operation de enregistrement propriétées du module en format json
         with open(f'{MODELS_SOURCE_PATH}/{file_name}.json', 'a') as src:
@@ -46,20 +46,20 @@ class Modul:
             data_ftd = data_ftd.replace("'","\"")
             src.write(data_ftd)
             # json.dump(data_ftd, src, indent=4)
-        
 
-        #Operation d'inclusion du module dans le programme 
-        with open(f'src/modules/lunch.py', 'a+') as src:
+
+        #Operation d'inclusion du module dans le programme
+        with open('src/modules/lunch.py', 'a+') as src:
             discrip = '"""\n\t-> add()\n\t-> findOne()\n\t-> find()\n\t-> remove()\n\t-> execute()\n\t"""'
             script_of_moduel = f"\n\nclass {file_name.capitalize()}(metaclass=MetaModel):\n"
             script_of_moduel+=f"\t{discrip}\n"
             script_of_moduel+="\tdef __init__(self):\n"
             script_of_moduel+=f"\t\tpass\n"
             src.write(script_of_moduel)
-        
+
 
         with open(f'{MODELS_SOURCE_PATH}/{file_name}.py', 'a') as src:
-            
+
             init_class = "\tdef __init__(self):\n"
             for item in json_data['properties']:
                 init_class+=f"\t\tself.{item} = None\n"
@@ -101,16 +101,15 @@ class Modul:
     def dict_quiz(cls, data):
         resp = {}
         val = None
-        for els in data.keys() :
+        for els in data.keys():
             question = data[els]
             val = input(question)
-            if val == "True" or val == "False":
+            if val in ["True", "False"]:
                 resp[els] = val.lower()
-            resp[els] = val       
+            resp[els] = val
         return resp
                 
 
     @classmethod
     def simple_quiz(cls, data):
-        resp = input(data)
-        return resp
+        return input(data)

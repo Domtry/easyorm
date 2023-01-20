@@ -8,7 +8,7 @@ class EtudiantModel(Etudiant):
 		self.name = None
 
 	def save(self):
-		if self.name == None:
+		if self.name is None:
 			return 'Please entry good name before save data'
 		self.add(name=self.name)
 		return 'operation success !'
